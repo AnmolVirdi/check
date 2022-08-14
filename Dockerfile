@@ -1,3 +1,4 @@
+package com.love;
 FROM ubuntu/latest
 RUN apk add --update nodejs npm
 COPY . /src
