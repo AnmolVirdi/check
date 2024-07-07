@@ -1,14 +1,14 @@
-name: Deploy to Heroku
+name: Test
 
 on:
-  [push]
+  # [push]
   # Triggers the workflow on push or pull request events but only for the main branch
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+   # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -24,17 +24,13 @@ jobs:
         run: ls
         
       # Runs a set of commands using the runners shell
-      - name: Login to Heroku Container registry
-        env: 
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login 
+      - name: Just type stuff in file
+        run: echo "HELLO ENJAE" >> test.txt
       
-      - name: Build and push
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push web --app devcation-23
+      - name: Show file
+        run: cat test.txt
         
-      - name: Release
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release web --app devcation-23
+      # - name: Release
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      #   run: heroku container:release web --app devcation-23
